@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/src/css/main.css">
     <script type="module" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="module" src="/src/js/main.js"></script>
 
 </head>
 <body>
@@ -21,9 +22,9 @@
     <h1 >Filtering App</h1>
 </header>
 <main class="p-2">
-    <input class="form-control" type="text" placeholder="Enter something to search">
-    <div class="mt-2">
-        <table>
+    <input id="txt-search" class="form-control text-center" type="text" placeholder="Enter something to search">
+    <div class="mt-2 table-responsive">
+        <table id="tbl-customers" class="table table-hover table-bordered">
             <thead>
             <tr>
                 <th>ID</th>
@@ -33,6 +34,7 @@
                 <th>COUNTRY</th>
             </tr>
             </thead>
+            <tbody></tbody>
         </table>
     </div>
 </main>
