@@ -4,9 +4,11 @@ const loaderElm = document.querySelector("#loader");
 const btnModeElm = document.querySelector("#btn-mode");
 const API_BASE_URL = 'http://localhost:8080';
 
+let searchParams = new URL(location).searchParams;
 let abortController = null;
-let sort = "id,asc";
-let q = '';
+let sort =searchParams.get('sort') ?? "id,asc";
+let q =searchParams.get('q') ?? '';
+txtSearchElm.value=q;
 
 loadAllCustomers();
 
@@ -21,8 +23,8 @@ function loadAllCustomers(query){
 
     abortController = new AbortController();
     const signal = abortController.signal;
-    const queryString = `sort=${sort}&page=1&size=50&q=${q}`;
-    fetch(`${API_BASE_URL}/customers?${queryString}`,{signal})
+    history.replaceState({},'',location.origin+"?q="+q)
+    fetch(`${API_BASE_URL}/customers?sort=${sort}&page=1&size=50&q=${q}`,{signal})
         .then(req => req.json())
         .then(customerList => {
             abortController=null;
