@@ -53,4 +53,20 @@ function addNewRow(customer){
 
 txtSearchElm.addEventListener('input',()=>{
     loadAllCustomers(txtSearchElm.value.trim());
-})
+});
+
+tblCustomersElm.querySelectorAll('thead th').forEach(th=>{
+    th.addEventListener('mouseenter',(e )=>{
+       th.classList.add('col-hover');
+       const colindex = Array.from(th.parentElement.children).indexOf(th);
+       tblCustomersElm.querySelectorAll(`tbody tr td:nth-child(${colindex+1})`)
+           .forEach(td => td.classList.add('col-hover'));
+    });
+
+    th.addEventListener('mouseleave',(e )=>{
+        th.classList.remove('col-hover');
+        const colindex = Array.from(th.parentElement.children).indexOf(th);
+        tblCustomersElm.querySelectorAll(`tbody tr td:nth-child(${colindex+1})`)
+            .forEach(td => td.classList.remove('col-hover'));
+    });
+});

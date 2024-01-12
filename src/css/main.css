@@ -49,3 +49,15 @@
         transform: rotate(360deg);
     }
 }
+
+th.col-hover{
+    background-color: rgb(63,63,63) !important;
+}
+
+td.col-hover{
+    background-color: rgba(63, 63, 63, 0.2) !important;
+}
+
+#tbl-customers{
+    cursor: pointer;
+}
