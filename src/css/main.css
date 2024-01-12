@@ -50,12 +50,20 @@
     }
 }
 
-th.col-hover{
+html[data-bs-theme="dark"] th.col-hover{
     background-color: rgb(63,63,63) !important;
 }
 
-td.col-hover{
+html[data-bs-theme="dark"] td.col-hover{
     background-color: rgba(63, 63, 63, 0.2) !important;
+}
+
+html[data-bs-theme="light"] th.col-hover{
+    background-color: rgb(240,240,240) !important;
+}
+
+html[data-bs-theme="light"] td.col-hover{
+    background-color: rgba(235, 235, 235, 0.3) !important;
 }
 
 #tbl-customers{
@@ -93,3 +101,25 @@ td.col-hover{
     top: 50%;
     transform: translateY(-50%);
 }
+
+.mode{
+    transition: all 500ms;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 50%;
+    display: flex;
+
+}
+
+html[data-bs-theme="dark"] .mode:hover{
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.082);
+}
+
+html[data-bs-theme="light"] .mode:hover{
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.2);
+}
+

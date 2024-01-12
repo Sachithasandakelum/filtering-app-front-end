@@ -18,11 +18,13 @@
 </head>
 <body>
 
-<header class="text-center p-2 border-bottom">
-    <h1 >Filtering App</h1>
+<header class="p-2 border-bottom d-flex justify-content-between">
+    <h2><i class="bi bi-sort-down-alt me-3 text-info"></i>Filtering App</h2>
+    <i id="btn-mode" class="mode bi bi-moon-fill"></i>
 </header>
 <main class="p-2">
     <input id="txt-search" class="form-control text-center" type="text" placeholder="Enter something to search">
+<!--    <div class="mt-2">Total Customers: 5000. Showing result</div>-->
     <div class="mt-2 table-responsive">
         <table id="tbl-customers" class="table table-hover table-bordered">
             <thead>

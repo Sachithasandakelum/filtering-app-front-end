@@ -1,6 +1,7 @@
 const txtSearchElm = document.querySelector("#txt-search");
 const tblCustomersElm = document.querySelector("#tbl-customers");
 const loaderElm = document.querySelector("#loader");
+const btnModeElm = document.querySelector("#btn-mode");
 const API_BASE_URL = 'http://localhost:8080';
 
 let abortController = null;
@@ -20,7 +21,8 @@ function loadAllCustomers(query){
 
     abortController = new AbortController();
     const signal = abortController.signal;
-    fetch(`${API_BASE_URL}/customers?sort=${sort}&page=1&size=50&q=${q}`,{signal})
+    const queryString = `sort=${sort}&page=1&size=50&q=${q}`;
+    fetch(`${API_BASE_URL}/customers?${queryString}`,{signal})
         .then(req => req.json())
         .then(customerList => {
             abortController=null;
@@ -93,4 +95,16 @@ tblCustomersElm.querySelector('thead').addEventListener('click',(e)=>{
 
         loadAllCustomers();
     }
+});
+
+btnModeElm.addEventListener('click',()=>{
+   if(btnModeElm.classList.contains('bi-moon-fill')){
+       btnModeElm.classList.remove('bi-moon-fill');
+       btnModeElm.classList.add('bi-sun-fill');
+       document.querySelector('html').setAttribute('data-bs-theme','light');
+   }else {
+       btnModeElm.classList.remove('bi-sun-fill');
+       btnModeElm.classList.add('bi-moon-fill');
+       document.querySelector('html').setAttribute('data-bs-theme','dark');
+   }
 });
