@@ -61,3 +61,35 @@ td.col-hover{
 #tbl-customers{
     cursor: pointer;
 }
+
+.sorted{
+    position: relative;
+}
+
+.sorted.order-down::after{
+    content: "";
+    position: absolute;
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-top: 5px solid limegreen;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sorted.order-up::after{
+    content: "";
+    position: absolute;
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-bottom: 5px solid limegreen;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}

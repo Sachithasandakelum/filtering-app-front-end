@@ -4,12 +4,15 @@ const loaderElm = document.querySelector("#loader");
 const API_BASE_URL = 'http://localhost:8080';
 
 let abortController = null;
+let sort = "id,asc";
+let q = '';
 
 loadAllCustomers();
 
 
 
 function loadAllCustomers(query){
+    q=query ?? q;
     loaderElm.classList.remove('d-none')
     if(abortController){
         abortController.abort("Request aborted");
@@ -17,7 +20,7 @@ function loadAllCustomers(query){
 
     abortController = new AbortController();
     const signal = abortController.signal;
-    fetch(`${API_BASE_URL}/customers?page=1&size=50&q=${query ?? ''}`,{signal})
+    fetch(`${API_BASE_URL}/customers?sort=${sort}&page=1&size=50&q=${q}`,{signal})
         .then(req => req.json())
         .then(customerList => {
             abortController=null;
@@ -69,4 +72,25 @@ tblCustomersElm.querySelectorAll('thead th').forEach(th=>{
         tblCustomersElm.querySelectorAll(`tbody tr td:nth-child(${colindex+1})`)
             .forEach(td => td.classList.remove('col-hover'));
     });
+});
+
+tblCustomersElm.querySelector('thead').addEventListener('click',(e)=>{
+    if(e.target?.tagName === 'TH'){
+        const thElm = e.target;
+        const colName = (thElm.innerText.trim().toLowerCase().split(' ').join('_'));
+        tblCustomersElm.querySelectorAll('thead th').forEach(th => th.classList.remove('sorted'))
+
+        thElm.classList.add('sorted');
+        if(thElm.classList.contains('order-down')){
+            thElm.classList.remove('order-down');
+            thElm.classList.add('order-up');
+            sort = `${colName},desc`
+        }else {
+            thElm.classList.remove('order-up');
+            thElm.classList.add('order-down');
+            sort = `${colName},asc`
+        }
+
+        loadAllCustomers();
+    }
 });
